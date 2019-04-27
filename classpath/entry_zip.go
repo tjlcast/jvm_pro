@@ -1,6 +1,11 @@
 package classpath
 
-import "path/filepath"
+import (
+	"path/filepath"
+	"archive/zip"
+	"io/ioutil"
+	"errors"
+)
 
 /**
 	表示ZIP或者JAR文件形式的类路径
@@ -19,8 +24,31 @@ func newZipEntry(path string) *ZipEntry {
 }
 
 func (self *ZipEntry) readClass(classname string) ([]byte, Entry, error) {
-	// todo
-	return nil, nil, nil
+
+	r, err := zip.OpenReader(self.absPath)
+	if err != nil {
+		return nil, nil, err
+	}
+	defer r.Close()
+
+	for _, f := range r.File {
+		// found the class
+		if f.Name == classname {
+			rc, err := f.Open()
+			if err != nil {
+				return nil, nil, err
+			}
+
+			defer rc.Close()
+			data, err := ioutil.ReadAll(rc)
+			if err != nil {
+				return nil, nil, err
+			}
+			return data, self, nil
+		}
+	}
+
+	return nil, nil, errors.New("class not found: " + classname)
 }
 
 func (self *ZipEntry) String() string {
