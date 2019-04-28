@@ -105,8 +105,7 @@ func (self *Classpath) ReadClass(classname string) ([]byte, Entry, error) {
 }
 
 func (self *Classpath) String() string {
-	// todo
-	return ""
+	return self.userClasspath.String()
 }
 
 

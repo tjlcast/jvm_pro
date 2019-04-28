@@ -29,6 +29,7 @@ func parseCmd() *Cmd {
 
 	args := os.Args
 	if len(args) > 0 {
+		// 临时 -> 从输入中得到完整类 [java.lang.Object]
 		cmd.class = args[0]
 		cmd.args = args[1:]
 	}
