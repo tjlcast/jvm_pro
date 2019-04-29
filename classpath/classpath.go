@@ -18,7 +18,7 @@ func Parse(jreOption, cpOption string) *Classpath {
 	cp := &Classpath{}
 	cp.parseBootAndExtClasspath(jreOption)
 	cp.parseUserClasspath(cpOption)
-	return nil
+	return cp
 }
 
 /**
@@ -91,6 +91,7 @@ func (self *Classpath) parseUserClasspath(cpOption string) {
 func (self *Classpath) ReadClass(classname string) ([]byte, Entry, error) {
 	// boot_cp
 	classname = classname + ".class"
+	// 这里的class文件命名： java/lang/Object.class
 	if data, entry, err := self.bootClasspath.readClass(classname); err == nil {
 		return data, entry, err
 	}

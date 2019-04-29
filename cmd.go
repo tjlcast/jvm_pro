@@ -27,7 +27,7 @@ func parseCmd() *Cmd {
 	flag.StringVar(&cmd.XjreOption, "Xjre", "", "path to jre")
 	flag.Parse()
 
-	args := os.Args
+	args := flag.Args()
 	if len(args) > 0 {
 		// 临时 -> 从输入中得到完整类 [java.lang.Object]
 		cmd.class = args[0]

@@ -16,3 +16,12 @@
     \ compositeEntry := []Entry{}
     \ strs := make([]string, len(self))
     在能确定数组大小以及不频繁调整时，使用数组的方式
+
+6、go project的编译
+    本地的go 目录如下：
+        bin 编译后的可执行程序
+        src 源代码
+        pkg 扩展包
+
+     步骤一： go install jvmgo/ch02 --> 是源代码的位置
+     步骤二： 之后在bin中可以看到可以执行的文件

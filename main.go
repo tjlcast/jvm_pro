@@ -2,9 +2,15 @@ package main
 
 import (
 	"fmt"
-	"jvm_pro/classpath"
 	"strings"
+	"jvm_pro/classpath"
 )
+
+/**
+	project args:
+
+
+ */
 
 func main() {
 	cmd := parseCmd()
@@ -20,9 +26,10 @@ func main() {
 
 func startJVM(cmd *Cmd) {
 	cp := classpath.Parse(cmd.XjreOption, cmd.cpOption)
-	fmt.Printf("classpath:%v class:%v args:%v\n", cp, cmd.class, cmd.args)
+	fmt.Printf("classpath:%v \nclass:%v \nargs:%v \n", cp, cmd.class, cmd.args)
 
 	className := strings.Replace(cmd.class, ".", "/", -1)
+	// className: java/lang/Object
 	classData, _, err := cp.ReadClass(className)
 
 	if err != nil {
