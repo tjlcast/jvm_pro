@@ -19,14 +19,14 @@ type Entry interface {
 }
 
 /**
-	newEntry根据参数创建不同类型的entry实例
+	newEntry根据 文件路径 创建不同类型的entry实例
  */
 func newEntry(path string) Entry {
-	// 目录
+	// 有 目录分隔符 时
 	if strings.Contains(path, pathListSeparator) {
 		return newCompositeEntry(path)
 	}
-	// 所有
+	// 有 星号 时
 	if strings.HasSuffix(path, "*") {
 		return newWildcardEntry(path)
 	}
@@ -35,5 +35,7 @@ func newEntry(path string) Entry {
 		strings.HasSuffix(path, ".jar") || strings.HasSuffix(path, ".JAR") {
 		return newZipEntry(path)
 	}
+
+	// 具体路径 时
 	return newDirEntry(path)
 }
