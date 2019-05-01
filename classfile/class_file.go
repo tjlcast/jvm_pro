@@ -16,6 +16,7 @@ type ClassFile struct {
 
 func Parse(classData []byte) (cf *ClassFile, err error) {
 	// todo
+	return nil, nil
 }
 
 func (self *ClassFile) read(reader *ClassReader) {
@@ -23,5 +24,5 @@ func (self *ClassFile) read(reader *ClassReader) {
 }
 
 func (self *ClassFile) readAndCheckMagic(reader *ClassReader) {
-
+	// todo
 }
