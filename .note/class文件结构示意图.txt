@@ -1,4 +1,5 @@
 
+9LaUSWAp-PU9LK-
 
 ClassFile {
     u4                  magic
@@ -18,3 +19,19 @@ ClassFile {
     u2                  attributes_out
     attrubute_info      attributes[attribute_count]
 }
+
+
+field_info {
+    u2              access_flags;
+    u2              name_index;
+    u2              descriptor_index;
+    u2              attributes_count;
+    attribute_info  attributes[attributes_count];
+}
+
+cp_info {
+    u1      tag;
+    u1      info[];
+}
+
+
